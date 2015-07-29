@@ -6,4 +6,9 @@ describe('Array', function(){
       assert.equal(-1, [1,2,3].indexOf(4));
     });
   });
+  describe('length', function(){
+  	it('should be aqual to 3 when the array contains 3 items', function() {
+  		assert.equal(3, [1,2,3].length);
+  	});
+  });
 });
