@@ -9,7 +9,7 @@ dependencies:
 
 test:
   override:
-    - docker run -d -p 80:3000 -v app:/src/app --no-deps alanhortz/node-docker-workflow-web
+    - docker run -d -p 80:3000 -v app:/src/app alanhortz/node-docker-workflow-web
     #- docker-compose run -d --no-deps web
     - cd app; mocha
 
