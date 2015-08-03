@@ -4,15 +4,18 @@ machine:
 
 dependencies:
   override:
-    - sudo pip install --upgrade docker-compose
+    #- sudo pip install --upgrade docker-compose
+    - docker build -t alanhortz/node-docker-workflow-web ./app
 
 test:
   override:
-    - docker-compose run -d --no-deps web
+    - docker run -d -p 80:3000 alanhortz/node-docker-workflow-web
+    #- docker-compose run -d --no-deps web
     - cd app; mocha
 
 deployment:
   hub:
     branch: master
     commands:
-      - $DEPLOY
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push alanhortz/node-docker-workflow-web
